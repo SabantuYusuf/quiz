@@ -5,7 +5,7 @@ import Quiz from './Quiz'
 function App() {
     return (
         <div>
-            Welcome To Trivia
+            <h1>Welcome to Trivia</h1>
             <Quiz></Quiz>
 
         </div>

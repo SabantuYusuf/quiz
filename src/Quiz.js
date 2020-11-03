@@ -112,11 +112,11 @@ export class Quiz extends Component {
                 }
 
                 {currentIndex < quizData.length - 1 && 
-                <button disabled = {this.state.disabled} onClick={this.nextQuestionHandler}>
+                <button disabled = {this.state.disabled} onClick={this.nextQuestionHandler} className='nextbtn'>
                     Next Question
                     </button>}
                 {currentIndex === quizData.length - 1 && 
-                <button onClick={this.finshHander} disabled= {this.state.disabled}>
+                <button  disabled = {this.state.disabled} onClick={this.finshHander}>
                     Submit</button>}
             </div>
         )
