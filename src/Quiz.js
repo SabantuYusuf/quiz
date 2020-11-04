@@ -23,7 +23,7 @@ export class Quiz extends Component {
             return {
                 question: quizData[currentIndex].question,
                 options: quizData[currentIndex].options,
-                answer: quizData[currentIndex].answer
+                correct: quizData[currentIndex].correct
             }
         })
     }
@@ -47,9 +47,9 @@ export class Quiz extends Component {
         this.loadQuiz();
     }
 
-    checkAnswer = answer => {
+    checkAnswer = correct => {
         this.setState({
-            userAnswer: answer,
+            userAnswer: correct,
             disabled: false
         })
     }
@@ -61,7 +61,7 @@ export class Quiz extends Component {
                 return {
                     question: quizData[currentIndex].question,
                     options: quizData[currentIndex].options,
-                    answer: quizData[currentIndex].answer
+                    correct: quizData[currentIndex].correct
                 }
             });
 
@@ -89,7 +89,7 @@ export class Quiz extends Component {
                         {quizData.map((item, index) => {
                             <li className='options'
                                 key={index}>
-                                    {item.answer}
+                                    {item.correct}
                             </li>
                         })}
                     </ul>
