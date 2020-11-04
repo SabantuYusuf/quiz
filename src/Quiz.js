@@ -1,4 +1,4 @@
-import {quizData} from './quizData'
+import { quizData } from './quizData'
 import React, { Component } from 'react'
 import './styles.css'
 
@@ -8,15 +8,18 @@ export class Quiz extends Component {
         super(props)
     
         this.state = {
+            //
             userAnswer: null,
             currentIndex: 0,
             options: [],
             quizEnd: false,
             score: 0,
+            // user can't go next until an option is selected
             disabled: true
         }
     }
     
+    // set question based on curent index
     loadQuiz = () => {
         const {currentIndex} = this.state;
         this.setState(() => {
@@ -28,6 +31,7 @@ export class Quiz extends Component {
         })
     }
 
+    //if user answer matches correct answer, increase score
     nextQuestionHandler = () => {
         const {userAnswer, correct, score} = this.state
 
@@ -42,11 +46,12 @@ export class Quiz extends Component {
         })
     }
 
-
+    //change in state
     componentDidMount() {
         this.loadQuiz();
     }
 
+    // check if user answer is correct 
     checkAnswer = correct => {
         this.setState({
             userAnswer: correct,
@@ -54,11 +59,13 @@ export class Quiz extends Component {
         })
     }
 
+    //change in currentstate, load another question and disable next until answer is selected
     componentDidUpdate(prevProps, prevState) {
         const {currentIndex} = this.state;
         if(this.state.currentIndex != prevState.currentIndex) {
             this.setState(() => {
                 return {
+                    //load next question
                     question: quizData[currentIndex].question,
                     options: quizData[currentIndex].options,
                     correct: quizData[currentIndex].correct
@@ -68,16 +75,18 @@ export class Quiz extends Component {
         }
     }
 
+    // only respond to submit buuton
     finshHander =() => {
         if(this.state.currentIndex === quizData.length -1) {
             this.setState({
-                quizEnd:true
+                quizEnd: true
             })
         }
     }
 
     render() {
-        const{question, options, currentIndex, userAnswer, quizEnd} = this.state
+        // all states
+        const{question, options, currentIndex, userAnswer, quizEnd, correct} = this.state
 
         if(quizEnd) {
             return (
@@ -87,9 +96,8 @@ export class Quiz extends Component {
                     <p>The correct answers for this Triva are </p>
                     <ul>
                         {quizData.map((item, index) => {
-                            <li className='options'
-                                key={index}>
-                                    {item.correct}
+                            <li key={index} className='options' >
+                                {item.correct}        
                             </li>
                         })}
                     </ul>
@@ -97,12 +105,15 @@ export class Quiz extends Component {
             )
         }
 
+
         return (
             <div>
-                <h3>{question}</h3>
                 <span>{`Question ${currentIndex + 1} of ${quizData.length}`}</span>
+                <h3>{question}</h3>
+                
                 {
                     options.map(option => 
+                        //class based on if selected or not
                         <p key = {option.id} className={`options ${userAnswer === option? "selected": null}`}
                         onClick = {() => this.checkAnswer(option)}
                         >
@@ -111,12 +122,14 @@ export class Quiz extends Component {
                         )
                 }
 
+                {/* display next button condictionally */}
                 {currentIndex < quizData.length - 1 && 
                 <button disabled = {this.state.disabled} onClick={this.nextQuestionHandler} className='nextbtn'>
                     Next Question
                     </button>}
+
                 {currentIndex === quizData.length - 1 && 
-                <button  disabled = {this.state.disabled} onClick={this.finshHander}>
+                <button onClick={this.finshHander} disabled = {this.state.disabled} className='submitbtn'>
                     Submit</button>}
             </div>
         )
