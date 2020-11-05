@@ -92,7 +92,7 @@ export class Quiz extends Component {
                 <div>
                     <h2>You have succesfuly competed! </h2>
                     <h3>Your final score is {this.state.score} points</h3>
-                    <p>The correct Qestions for this Triva are </p>
+                    <p>The Qestions for this Triva are: </p>
                     <ol className='question'>
                         {quizData.map((item, index) => (
                             
@@ -102,7 +102,7 @@ export class Quiz extends Component {
                             </li>
                         ))}
                     </ol>
-                    <p>The correct answers for this Triva are </p>
+                    <p>The correct answers for this Triva are: </p>
                     <ol>
                         {quizData.map((item, index) => (
                             <li className='answer' 
