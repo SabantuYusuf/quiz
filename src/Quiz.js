@@ -8,7 +8,6 @@ export class Quiz extends Component {
         super(props)
     
         this.state = {
-            //
             userAnswer: null,
             currentIndex: 0,
             options: [],
