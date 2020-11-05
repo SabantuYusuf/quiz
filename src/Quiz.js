@@ -62,7 +62,7 @@ export class Quiz extends Component {
     //change in currentstate, load another question and disable next until answer is selected
     componentDidUpdate(prevProps, prevState) {
         const {currentIndex} = this.state;
-        if(this.state.currentIndex != prevState.currentIndex) {
+        if(this.state.currentIndex !== prevState.currentIndex) {
             this.setState(() => {
                 return {
                     //load next question
@@ -86,21 +86,32 @@ export class Quiz extends Component {
 
     render() {
         // all states
-        const{question, options, currentIndex, userAnswer, quizEnd, correct} = this.state
+        const{question, options, currentIndex, userAnswer, quizEnd} = this.state
 
         if(quizEnd) {
             return (
                 <div>
-                    <h1>You have succesfuly competed! </h1>
-                    <h1>Your final score is {this.state.score} points</h1>
+                    <h2>You have succesfuly competed! </h2>
+                    <h3>Your final score is {this.state.score} points</h3>
+                    <p>The correct Qestions for this Triva are </p>
+                    <ol className='question'>
+                        {quizData.map((item, index) => (
+                            
+                            <li className='question' 
+                            key={index}>
+                                {item.question}        
+                            </li>
+                        ))}
+                    </ol>
                     <p>The correct answers for this Triva are </p>
-                    <ul>
-                        {quizData.map((item, index) => {
-                            <li key={index} className='options' >
+                    <ol>
+                        {quizData.map((item, index) => (
+                            <li className='answer' 
+                            key={index}>
                                 {item.correct}        
                             </li>
-                        })}
-                    </ul>
+                        ))}
+                    </ol>
                 </div>
             )
         }

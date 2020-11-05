@@ -1,8 +1,12 @@
-
-
-.App {
-    text-emphasis: center;
+body {
+    display: flex;
+    justify-content: center;
+    color: black;
+    font-size: 20px;
+    background-color:wheat;
+    margin-top: 200px;
 }
+
 
 /* User selct option */
 .selected {
@@ -11,8 +15,7 @@
 
 /* options */
 .options {
-    padding: 8px;
-    border: 3px solid wheat;
+    padding: 6px;
     cursor: pointer;
     width: 100%;
     background-color: blanchedalmond;
@@ -22,22 +25,6 @@
 
 }
 
-ul {
-    list-style-type: none;
-}
-
-ul li {
-    margin: 5px;
-}
-
-body {
-    display: flex;
-    justify-content: center;
-    color: black;
-    font-size: 20px;
-    background-color:wheat;
-    margin-top: 200px;
-}
 
 .nextbtn,
 .submitbtn {
@@ -48,4 +35,18 @@ body {
     border-radius: 8px;
     color: white;
 }
+
+
+.answer,
+.question {
+    padding: 8px;
+    border: 3px solid wheat;
+    cursor: pointer;
+    width: 100%;
+    background-color: blanchedalmond;
+    color: black;
+    border-radius: 8px;
+}
+
+
 
